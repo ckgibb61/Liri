@@ -2,8 +2,8 @@ require("dotenv").config();
 const fs = require('fs');
 
 const keys = require("./keys.js");
-const twitter = require("twitter");
-const spotify = require("node-spotify-api");
+const Twitter = require("twitter");
+const Spotify = require("node-spotify-api");
 
 
 
@@ -35,9 +35,13 @@ function spotIt() {
     Spotify.search({
         type: 'track',
         query: songName
-    }, if (err)
-        return console.log(error);
-    else (console.log(data.tracks.items))
+    }, function(err, data) {
+        if (err)    {
+            return console.log(error);
+        } else {
+            console.log(data.tracks.items)
+        }
+    })
 };
 function movie() {
     request("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy", function (error, response, body) {
